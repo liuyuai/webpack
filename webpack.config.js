@@ -6,14 +6,23 @@ module.exports = {
   mode: "development",
   // entry: './src/index.js',
   entry: {
-    index:'./src/index.js',
-    print:'./src/print.js'
+    app:'./src/index.js',
+    // print:'./src/print.js'
   },
   devtool: 'inline-source-map',
   devServer: {
     contentBase:'./dist',
+    hot:true
     // disableHostCheck:true,
     // publicPath:'http://l.test.66buy.com.cn'  not recommend
+  },
+  module: {
+    rules:[
+      {
+        test: /\.css$/,
+        use:['style-loader','css-loader']
+      }
+    ],
   },
   plugins: [
       new CleanWebpackPlugin({cleanStaleWebpackAssets:false}),
