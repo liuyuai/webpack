@@ -40,7 +40,18 @@
 *    代码分割(code splitting)
 *         动态引入
 *
+*    缓存cache
+*       输出文件 [name].[contenthash].js  这也就是之前说的那种 每次布置项目的方式
 *
+*   构建 library
+*       这个之后在做一下
+*
+*   环境变量
+*       npx webpack --env NODE_ENV=local --env production --progress
+*
+*     node环境中 可以获取
+*
+*     构建性能(build performance)
 *
 *
 *
