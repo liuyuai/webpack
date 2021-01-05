@@ -1,18 +1,14 @@
-import _  from 'loadsh'
-import printMe from "./print";
+import { cube } from "./print";
 
 
 function component() {
   
-  const element = document.createElement('div');
-  const btn = document.createElement('button');
-  // Lodash, now imported by this script
+  const element = document.createElement('pre');
   
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  
-  btn.innerHTML = 'Click me and check the console';
-  btn.onclick = printMe;
-  element.appendChild(btn);
+  element.innerHTML = [
+      'Hello webpack',
+    '5 cubed is equal to'+cube(5)
+  ].join('\n\n');
   
   return element;
 }

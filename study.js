@@ -55,4 +55,26 @@
 *
 *
 *
+*
+*
+*
+*
+*
+*
+*
+*
+* **/
+
+/*
+*
+*    开发环境(development) 和 生产环境(production)
+*
+*    开发环境：为了方便开发，我们需要 强壮的 source map(资源图), 本地服务器 实时加载(live reloading) 或者 HMR(Hot Module Replacement)热模块替换
+*
+*    生产环境： 我们需要 minified bundles(压缩 bundles), 更轻巧的(source map) 和 optimized asset(优化资源文件)  提高加载时间。
+*
+*
+*
+*
+*
 * **/

@@ -1,4 +1,7 @@
+export function square(a) {
+  return a*a;
+}
 
-export default function printMe() {
-  console.log('I get called from print.js');
+export function cube(a) {
+  return a*a*a;
 }
