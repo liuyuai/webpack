@@ -52,6 +52,79 @@
 *     node环境中 可以获取
 *
 *     构建性能(build performance)
+*       General(大体上)
+*          实时更新最新版本
+*
+*     生产环境
+*
+*     开发环境
+*
+*
+*   内容安全策略（Content Security Policies）
+*
+*   生产环境 vagrant
+*     虚拟机(virtual machine) 在虚拟机上运行 webpack
+*     Advanced Usage with nginx
+*
+*
+*   依赖管理
+*       正则表达式匹配 文件名
+*       对应的 资源文件 会产生 一个序号
+*
+*   scaffolding 脚手架
+*       1. 编写一个 涉及面广的 通用脚手架
+*       2. 做一些 特殊内容的 配置
+*       3. 谁会用这个脚手架
+*
+*   HMR(Hot Module Replacement) 热模块更新
+*     用于开发环境, hot true来实现热替换  webpack-serve-dev
+*
+*   Tree shaking
+*     按照 ES2015的语法 import  export
+*     来实现 打包时候 压缩 使用到的 内容
+*
+*   Production 生产环境
+*     使用 webpack-merge
+*     来分离
+*           webpack.common.js 公共配置代码   开发和生产都能用到
+*
+*           webpack.dev.js  开发环境，可配置 独自的设置
+*              mode:'development'
+*              devtool:'inline-source-map'
+*
+*           webpack.prod.js 生产环境，可配置 独自的设置
+*              mode:'production'
+*              devtool:'source-map'
+*
+*         自从webpack4+后，指定的mode 会 自动配置 definePlugin
+*         所以你能够
+*           process.env.NODE_ENV 来获取当前环境
+*
+*      懒加载(lazy load)
+*      按需加载 (on demand)
+*
+*      ECMAScript 模块
+*
+*
+*     shimming 预置依赖
+*
+*       shimming 是一个库, 它将新的API引入到 一个旧的环境中,而且仅靠旧的环境中已有的手段实现。
+*
+*
+*       polyfill 就是一个用在浏览器API上的 shimming
+*
+*          通常 先检查当前浏览器是否支持某个API，如果 不支持  按需加载 对应的polyfill。 然后新旧浏览器 就都可以使用这个API了。
+*
+*          能力检查的 代码长呢  还是全部加载的 代码长呢
+*
+*
+*
+*
+*
+*
+*
+*
+*
 *
 *
 *
