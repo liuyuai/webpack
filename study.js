@@ -129,26 +129,36 @@
 *          在离线时 应用程序能够正常运行, 使用了 Service Worker 技术
 *
 *
+*     public path(公共路径)
+*       process.env.ASSET_PATH 被定义在 definePlugin
+*
+*        这里用到了  之前学的 ES6 的import和 require的区别
+*         import的是在编译时执行 所以要放在最上层
+*
+*
+*     Integration(集成)
+*       webpack是一个模块打包工具 例如  Browserify 和 Brunch
+*
+*       Make,Grunt,Gulp是  (task runner)任务执行器
+*       任务执行工具用来自动化处理常见的开发任务  lint(代码检测),build(构建) test(测试)
+*
+*       打包工具 取得 准备用于部署的 js和 stylesheet,将他们转换为 适合浏览器的可用格式.
+*        压缩 分离 懒加载
 *
 *
 *
+*       Asset Module(资源模块)
+*        模块类型
+*
+*       新增了4种模块类型 代替原理的
+*
+*      asset/resource 发送一个单独文件并导出url， file-loader
+*      asset/inline  导出一个资源的data url，  url-loader
+*      asset/source  导出资源的源代码     raw-loader
 *
 *
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
+*      asset 在导出一个data url和 发送一个单独的文件之间 自动选择。  url-loader
+*            小于8k使用inline
 *
 *
 *
