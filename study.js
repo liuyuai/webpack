@@ -118,6 +118,23 @@
 *          能力检查的 代码长呢  还是全部加载的 代码长呢
 *
 *
+*     TypeScript
+*        添加 ts-loader  编译
+*
+*     web Workers
+*       webpack5 添加 新特性  new Worker  能够执行js代码在浏览器上 而不用bundle
+*        可以通信
+*
+*     PWA(Progressive Web Application)
+*          在离线时 应用程序能够正常运行, 使用了 Service Worker 技术
+*
+*
+*
+*
+*
+*
+*
+*
 *
 *
 *
