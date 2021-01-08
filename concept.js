@@ -211,9 +211,143 @@
 *
 *           we can set dynamically at runtime
 *           on the top of entry point file;
-*         __webpack_public_path__ = myRuntimePublicPath;
+*
+*         __webpack_public_path__ = myRuntimePublicPath; // by this way can dynamically set path;
 *
 *
+* **/
+
+
+/*
+*      三、Loaders
+*
+*         loader can transform a different language(like ts) to javascript, or load inline image as data URL;
+*         also can allow you  import CSS directly from your js module
+*
+*        like  css-loader  ts-loader,  we can know it  (in your study framework, and the popular framework can be introduce itself)
+*
+*       use the Loader in 3 way
+*
+*       configure: specify them in your webpack.config.js
+*       inline: specify them explicitly in each import  statement
+*       CLI: specify them within  a shell command
+*
+*
+*         1.configure
+*             Loader are evaluated(取值)/executed(执行) from right to left (or from bottom to top);
+*
+*           module.exports = {
+*               module:{
+*                 rules:[
+*                   {
+*                     test: /\.css$/,
+*                     use：[
+*                       {loader: 'style-loader'},           finally
+*                       {                                   second step
+*                         loader: 'css-loader',
+*                         options:{
+*                           modules:true
+*                         }
+*                       },
+*                       {loader:'sass-loader'}              first step
+*                     ]
+*                   }
+*                 ]
+*               }
+*           }
+*
+*         2.Inline
+*             use  ! to spilt  loader and path;
+*             每个目录都会相对于当前目录解析
+*             import Styles from 'style-loader!css-loader?modules!./styles.css'
+*
+*             note 3 point
+*             ! will disable all configured normal loaders
+*
+*                eg: import Styles from '!style-loader!css-loader?modules!./styles.css';
+*
+*             !! will disable all configured loader(preLoaders, loaders, postLoaders)
+*
+*                eg: import Styles from '!!style-loader!css-loader?modules!./styles.css';
+*
+*             -! will disable all configured preLoader and loaders  but not postLoader
+*
+*                eg: import Styles from '-!style-loader!css-loader?modules!./styles.css';
+*
+*                 the parameter:
+*                      e.g. ?key=value&foo=bar, or a JSON object,
+*                      e.g. ?{"key":"value","foo":"bar"}.
+*
+*         3.CLI
+*             webpack --module-bind pug-loader  --module-bind 'css=style-loader!css-loader'
+*               use the pug-loader for .jade file, and the style-loader and css-loader for .css file;
+*
+*
+*         Loader Features
+*
+*           1.loader can be chained. A chain is executed in reverse order.
+*             the first loader passes its result(resource had transformed) to next one,the last loader will return the Javascript to webpackk
+*
+*           2.loader can sync or async
+*
+*           3.Loader run in Node.js and can do anything
+*
+*           4.loader can be configured with an 'option' Object
+*
+*           5.常见是通过package.json 的main 来将一个npm模块导出为loader， (behind in the Chinese doc)还可以在module.rule中使用loader字段直接引用一个模块
+*
+*           6.Plugin can give loaders more features
+*
+*           7.Loader can emit additional arbitrary files.
+*
+*
+*         Loader follow the standard module resolution(模块解析)
+*         loader are usually named xxx-loader(json-loader).
+*
+*
+*
+* **/
+
+
+/*
+*         四、Plugins
+*
+*            plugins purpose is to resolve the problem that a loader cannot do.
+*
+*           A webpack Plugin is Javascript object that has an 'apply' method, This 'apply' method is called by the compiler,
+*         In entire compilation lifecycle can access compiler object.
+*
+*         (ps: in Vue, the  component )
+*
+*
+*         Usage:
+*             plugin can take arguments/options.you must pass a new instance to the plugin property in your webpack configuration.
+*
+*
+*           eg:
+*              const HtmlWebpackPlugin = require('html-webpack-plugin');
+*              const webpack = require('webpack');
+*              const path = require('path');
+*
+*              module.exports = {
+*                 entry:'./path/to/my/entry/file.js',
+*                 output:{
+*                   filename:'[name].bundle.js',
+*                   path: path.resolve(__dirname,'dist')
+*                 },
+*                 module:{
+*                   rules:[
+*                     {
+*                       test: /\.(js|jsx)$/,
+*                       use:'babel-loader'
+*                     }
+*                   ]
+*                 },
+*                 plugins:[
+*                     new webpack.ProgressPlugin(),
+*                     new HtmlWebPlugin( {template: './src/index.html'} )
+*                 ]
+*              }
 *
 *
 *
