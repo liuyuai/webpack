@@ -350,8 +350,81 @@
 *              }
 *
 *
+* **/
+
+
+/*
+*         五、Configuration
+*
+*             webpack's configuration file is a Javascript file that exports webpack configuration.
+*
+*             webpack is follow the Node.js CommonJS standard,
+*
+*               1. use require() import other file
+*               2. use require() get other utility  from  NPM package.
+*               3. use javascript control expression.  like ?
+*               4. use constants or variable to valued
+*               5. write and execute functions to  generate  a part of the configuration.
 *
 *
+*
+*       Important:  The webpack configuration have many different ways to format and style.
+*                   but  you and your team can understand and maintain consistent is most important.
+*
+*                   computer is a tool, people is the soul.
+*
+*
+*
+* **/
+
+/*
+*        六、Module
+*
+*            What is webpack module:
+*               1. An ES2015 import statement
+*               2. A CommonJS require statement
+*               3. AMD  define ande require statement
+*               4. An @import statement inside of a css/sass/less file
+*               5. stylesheet url(...) or HTML <img src='...'>
+
+*           Supported Module Type
+*               1. ECMAScript modules
+*               2. CommonJs modules
+*               3. AMD modules
+*               4. Assets
+*               5. Web Assembly modules
+*
+*
+*           Use the loader to added, webpack can supports more language and more preprocessor
+*               1.CoffeeScript
+*               2.TypeScript
+*               3.ESNext(babel)
+*               4.Sass
+*               5.Less
+*               6.Stylus
+*               7.Elm
+*
+* **/
+
+
+/*
+*         七、Module Resolution
+*
+*            Resolving rules in webpack
+*
+*            Using enhanced-resolve,  webpack can resolve three kind of file paths;
+*
+*               1.Absolute path
+*                   import '/home/me/file';
+*                   import 'c:\\User\\me\\file'
+*
+*               2.Relative path     by current path to generate a  absolute path
+*                   import '../src/file'
+*                   import './file2'
+*
+*               3.module path
+*                 import 'module';
+*                 import 'module/lib/file'
 *
 *
 *
