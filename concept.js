@@ -432,3 +432,110 @@
 *
 *
 * **/
+
+
+/*
+*         八、Module Federation  模块联盟
+*
+*             const OverridablesPlugin = require('webpack/lib/container/OverridablesPlugin');
+*             module.exports = {
+*                 plugin: [
+*                     new OverridablesPlugin([
+*                       {
+*                         //we define an overridable module with OverridablesPlugin
+*                         test1: './src/test1/js',
+*                       },
+*                     ]),
+*                 ]，
+*             };
+*
+*             index.js
+*               __webpack_override__({
+*                   //here we override test1 module
+*                   test1: ()=>'I will override test1 module under src'
+*               })
+*
+*
+*
+* **/
+
+
+/*
+*       九、Dependency Graph （依赖图）
+*
+*
+*     One file depend on another file.  this allow webpack to take non-code assets.
+*
+*     HTTP1.1 : webpack's building is powerful,  the browser start a new request it can minimizes  the times for your app
+*
+*
+*     http2 : you can also use the  code splitting  to achieve the best result.
+*
+*
+*
+*
+*
+* **/
+
+
+/*
+*       十、 Target
+*
+*         const path = require('path');
+*         const serverConfig = {
+*           target:"node",
+*           output:{
+*             path: path.resolve(__dirname, 'dist'),
+*             filename:'lib.node.js'
+*           }
+*         };
+*
+*         const clientConfig = {
+*           target:'web',   // default value is 'web'
+*           output:{
+*             path: path.resolve(__dirname, 'dist'),
+*             filename:'lib.js'
+*           }
+*         }
+*
+*
+*
+*
+*
+* **/
+
+
+/*
+*       十一、Manifest
+*
+*       In a typical application or site built with webpack, there are three main type of code:
+*
+*       1. The source code you, and maybe your team ,have written
+*       2. Any third-party library or 'vendor' code  your source is dependent on
+*       3. A webpack runtime and manifest that conducts the interaction of all modules
+*
+*         manifest: 当compiler 开始 执行，解析，映射应用程序时，它会保留所有模板的详细要点，这个数据的集合称为  manifest数据
+*          当完成打包并发送到浏览器时，runtime会 通过 manifest 来解析和加载模块.
+*
+*         which module syntax you have chosen,
+*         those   ' import'or  'require' statement have become __webpack_require__ methods that point to module identifiers(模块表示符)
+*         Using the data in the manifest, the runtime can by use identifier to find out ist behind modules.
+*
+*
+*     !!!we can know the webpack how to work in its behind.
+*
+*         if you decide to improve performance of your project by  utilizing browser caching(浏览器缓存)
+*
+*
+*       通过使用内容散列(content hash)作为 bundle 文件的名称，这样在文件内容修改时，会计算出新的 hash，
+*       浏览器会使用新的名称加载文件，从而使缓存无效。
+*
+*
+*
+*
+*
+*
+*
+* **/
+
+
