@@ -538,4 +538,23 @@
 *
 * **/
 
+/*
+*     HMR(Hot Module Replacement)
+*
+*
+*
+*
+*     compiler saved,and generate new contentHash  then emit the  [hash].hot-update.js and [hash].hot-update.json
+*     finally to  build the  changed module
+*
+*     webpack will bundle the  code in the memory
+*
+*     hot replacement emit a ajax request, get a [hash].hot-update.json.   for client-server(本地服务器) so the host is local path.
+*
+*
+*
+*
+*
+* **/
+
 
