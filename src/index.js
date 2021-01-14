@@ -24,12 +24,9 @@ let element = component();  // Store the element to re-render on print.js change
 document.body.appendChild(element);
 
 
-if(module.hot){
-  module.hot.accept('./print.js',function () {
+if (module.hot) {
+  module.hot.accept('./print.js', function() {
     console.log('Accepting the updated printMe module!');
-    // printMe();
-    document.body.removeChild(element);
-    element = component();
-    document.body.appendChild(element);
+    printMe();
   })
 }
