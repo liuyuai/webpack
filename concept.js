@@ -541,6 +541,60 @@
 /*
 *     HMR(Hot Module Replacement)
 *
+*     I Think
+*
+*     1.file changed
+*     2.compiling
+*     3.generate new module
+*     4. use the SockJs(is a webSocket，be used to communication )
+*     5. ajax get [hash].hot-update.js and [hash].hot-update.json
+*     6. compare the previous version and 'update version'
+*     7. go to update
+*
+*
+*     In Fact
+*       1.webpack 对文件系统进行watch 然后 根据配置文件打包成一个简单的javascript对象 保存在内存中
+*         (ps: 不生成文件的原因就在于 访问内存中的代码 比访问文件系统中的文件更快，并且也减少了代码写入文件的开销,使用了 memory-fs)
+*         (memory-fs是 webpack-dev-middleware 的一个依赖库，webpack-dev-middleware将webpack 原本的outputFileSystem 替换成了 MemoryFileSystem)
+*
+*       2.devServer 通知浏览器端 文件发生改变
+*         SockJs 是服务端和浏览器端之间的桥梁，在启动devServer的时候，SockJs在服务端和浏览器端建立了一个webSocket长连接, 以便webpack 编译和打包的各个
+*         阶段状态告知 浏览器，最关键的步骤是webpack-dev-server 调用 webpack api 监听 compile的done事件，当 compile完成后，webpack-dev-server通过
+*         _sendStatus方法将 编译打包的新模块 hash值 发送到 浏览器端
+*
+*       3.webpack-dev-server/client 接受到服务器消息 做出响应
+*         webpack-dev-server修改了webpack配置中的entry属性， 在里面添加了webpack-dev-client代码，这样在最后的bundle.js文件中就会有接收websocket消息
+*         的代码了。
+*         webpack-dev-server/client 当接收到type为hash消息后将hash值暂时存起来，当接收到type为ok的消息后 对应用进行reload操作。
+*
+*       4.webpack接收到最新hash值 验证并请求模块代码
+*
+*         首先是webpack/hot/dev-server 监听第三步 webpack-dev-server/client 发送的 webpackHotUpdate消息，调用webpack.lib/HotModuleReplacement.runtime中的
+*         check方法，检测是否有新的更新，在check过程中会利用webpack/lib/JsonpMainTemplate.runtime中的 hotDownloadUpdateChunk 和 hotDownloadManifest，
+*         第二个方法是抵用ajax向服务器请求是否有更新的文件，如果有将发更新的文件列表返回浏览器端，而第一个方法是 通过jsonp请求最新的模块代码，然后将代码返回给
+*         HMR runtime, HMR runtime 会根据返回的新模块代码做进一步的处理，可能是刷新页面，也可能是对模块进行热更新。
+*
+*       5.  HotModuleReplacement.runtime 对模块进行热更新
+*           这一步是整个 模块热更新(HMR)的关键步骤， 热更新模块都发生在HMR runtime中的hotApply方法中
+*           1. 找出outDatedModules 和 outDatedDependencies，
+*           2. 从缓存中删除过期的模块和依赖
+*           3.将新的模块添加到modules中， 当下次调用__webpack_require__(webpack重写的require方法)方法的时候，就会获取新的模块代码
+*
+*       6. 业务代码需要做些什么
+*           当用新的模块代码替换老的模块后，但是我们的业务代码并不能知道代码已经发生了变化，也就是说当hello.js文件修改后，我们需要在
+*           index.js文件中调用 HMR的accept方法， 添加模块更新后的处理函数。
+*
+*                                                                                                               websocket 通信
+*      总结：文件变化 => 使用通信(webSocket, web-dev-server)来通知浏览器文件发生变化 => webpack-dev-server/client(webpack-dev-server服务器的客户端 做出响应)
+*        => webpack接受最新hash 并且请求更新模块(jsonp或ajax) => 找出数据模块和数据依赖模块，删除过期模块，添加新模块 =>
+*
+*
+*
+*
+*
+*
+*
+*
 *
 *
 *
