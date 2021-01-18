@@ -539,7 +539,7 @@
 * **/
 
 /*
-*     HMR(Hot Module Replacement)
+*     十二、HMR(Hot Module Replacement)
 *
 *     I Think
 *
@@ -591,19 +591,38 @@
 *
 *
 *
-*
-*
-*
-*
-*
-*
-*
 *     compiler saved,and generate new contentHash  then emit the  [hash].hot-update.js and [hash].hot-update.json
 *     finally to  build the  changed module
 *
 *     webpack will bundle the  code in the memory
 *
 *     hot replacement emit a ajax request, get a [hash].hot-update.json.   for client-server(本地服务器) so the host is local path.
+*
+*
+*
+*
+*
+* **/
+
+
+/*
+*   十三、 Why webpack
+*
+*     IIFE(立即调用函数表达式)
+*
+*     IIFE 使用方式 产生出 Make,Gulp,Grunt,Broccoli或 Brunch 等工具。这些工具称为 任务执行器，它们将所有项目文件拼接在一起。
+*
+*
+*     Node.js是一个Javascript运行时，可以在浏览器环境之外的计算机和服务器中使用。webpack运行在 Node.js中。
+*
+*     CommonJS问世并引入了require机制，它允许你在当前文件中加载和使用某个模块。导入需要的每个模块，这一开箱即用的功能，帮助我们解决了作用于的问题。
+*
+*     虽然CommonJS是Node.js项目的绝佳解决方案，但浏览器不支持模块，因而产生了Browserify，RequireJS和SystemJS等打包工具，允许我们编写能够在浏览器
+*     中运行的CommonJS模块。
+*
+*     传统的任务构建工具基于 Google的 Closure 编译器都 要求 你手动的 在顶部声明所有的依赖。
+*
+*     而像 webpack一类的 打包工具自动构建并 基于你所引用或导出的内容推断出 依赖的图谱
 *
 *
 *
